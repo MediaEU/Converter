@@ -1,4 +1,4 @@
-#converter_3.py
+#converter.py
 #barebone example of a converter
 
 from tkinter import Tk, Entry, Label, Button, StringVar
