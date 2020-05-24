@@ -1,3 +1,6 @@
+#converter_3.py
+#barebone example of a converter
+
 from tkinter import Tk, Entry, Label, Button, StringVar
 from tkinter.ttk import Combobox
 from tkinter.font import Font
@@ -58,6 +61,7 @@ class App():
         in_v = self.ent_val.get()
         from_type = self.com_from.get()  #which type ex. Hexadecimal 
         to_type = self.com_to.get()      #which type ex. Decimal 
+        print("Choice--\t From: {}\t To: {}".format(from_type, to_type))
        
         #call Converter method
         result = Converter.convert_value(in_v, from_type, to_type)
@@ -70,12 +74,14 @@ class Converter():
         
     input_value = None
     mapping = dict(zip(permutations(('Hexadecimal', 'Decimal', 'Binary'), r=2), (1, 2, 4, 6, 3, 5)))
-
+    print(mapping)
+    
     def convert_value(input_value, from_which_type, to_which_type):
         Converter.input_value = input_value
         ret_choice = Converter.convert_what(from_which_type, to_which_type)
         print("ret_choice = ", ret_choice)
         func_to_call = Converter.choices(ret_choice)    #which function to call
+        print("func_to_call = ", func_to_call)
         return func_to_call()
         
     def convert_what(numeral_sys_1, numeral_sys_2):
@@ -122,9 +128,9 @@ class Converter():
             0: Converter.nothing,
             1: Converter.hex_to_dec,
             2: Converter.hex_to_bin,
-            3: Converter.bin_to_dec,
+            3: Converter.bin_to_hex,
             4: Converter.dec_to_hex,
-            5: Converter.bin_to_hex,
+            5: Converter.bin_to_dec,
             6: Converter.dec_to_bin
         }
         # Get the function from switcher dictionary
@@ -137,3 +143,7 @@ if __name__ == "__main__":
     root.title("Converter")
     app = App(root)
     root.mainloop()
+    
+    
+    
+    
